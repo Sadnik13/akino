@@ -1,7 +1,7 @@
 # AINO AGENT  
 **Turning Complexity into Opportunity**  
 
-![AINO Logo](assets/AVATAR.jpg "AINO AGENT Logo") 
+![AVATAR](assets/AVATAR.jpg "AVATAR") 
 
 AINO AGENT is an AI-powered solution designed to guide creators, traders, and visionaries through the ever-evolving blockchain landscape. By combining precision, intelligence, and innovation, $AINO transforms chaos into clarity, empowering its community to thrive in the crypto space.  
 
