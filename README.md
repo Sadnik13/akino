@@ -60,7 +60,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ### **"From chaos to clarity — $AINO builds the future, one block at a time."**
 
-<img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/%40ChainLabsAI">
+![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/ChainLabsAI)
+
 
 
 
