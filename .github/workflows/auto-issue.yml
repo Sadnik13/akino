@@ -3,18 +3,19 @@ name: Auto Issue (every 5 min)
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '2/5 * * * *' # UTC, каждые 5 минут начиная со 2-й
+    - cron: '2/5 * * * *'
 
 permissions:
+  contents: write
   issues: write
 
 jobs:
   create:
     runs-on: ubuntu-latest
     steps:
-      - name: Create issue via API (JSON body)
+      - name: Create issue via API (JSON body) as user
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_USER }}
         run: |
           now="$(date -u +'%F %T')"
           cat > body.json <<JSON
