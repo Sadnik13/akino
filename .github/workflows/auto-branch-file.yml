@@ -2,8 +2,8 @@ name: Auto create branch and file
 
 on:
   schedule:
-    - cron: '11 3 * * *'   # каждый день 03:11 UTC
-  workflow_dispatch: {}     # ручной запуск из вкладки Actions
+    - cron: '11 3 * * *'
+  workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -12,18 +12,18 @@ jobs:
   create-branch-and-file:
     runs-on: ubuntu-latest
     steps:
-      - name: Get latest SHA of main
+      - name: Get latest SHA of main (as user)
         id: base
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_USER }}
         run: |
           SHA=$(gh api repos/${{ github.repository }}/git/refs/heads/main --jq '.object.sha')
           echo "sha=$SHA" >> "$GITHUB_OUTPUT"
 
-      - name: Make new branch via Git refs API
+      - name: Create branch via Git refs API (as user)
         id: mkbranch
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_USER }}
         run: |
           ts="$(date -u +'%Y%m%d-%H%M%S')"
           new="auto/${ts}"
@@ -34,9 +34,9 @@ jobs:
             -f sha="${{ steps.base.outputs.sha }}"
           echo "branch=$new" >> "$GITHUB_OUTPUT"
 
-      - name: Create a new file in the new branch (PUT /contents)
+      - name: Create file in the new branch (as user)
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_USER }}
         run: |
           branch="${{ steps.mkbranch.outputs.branch }}"
           path="files/auto-${branch#auto/}.txt"
